@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: cms_provider
+    description: This model is used to clean and check data using.
+    columns:
+      - name: CMS_CERTIFICATION_NUMBER
+        tests:
+          - unique
+          - not_null
+                    
+  - name: urban
+    description: This model lists all providers that are in an urban area.
+  - name: rural
+    description: This model lists all providers that are in a rural area.
+  - name: urban_rural
+    description:  This model pulls total statistics for urban vs rural providers.
+
+sources:
+  - name: cms_provider
+    database: NURSING_HOME
+    schema: NURSING_HOME
+    tables:
+      - name: PROVIDER_INFO_DEC2025
+  
+  - name: urban_rural
+    database: NURSING_HOME
+    schema: NURSING_HOME
+    tables:
+      - name: CMS_PROVIDER
+  
+  
