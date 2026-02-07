@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: cms_provider
+    description: This model is used to clean and check data using.
+    columns:
+      - name: CMS_CERTIFICATION_NUMBER
+        tests:
+          - unique
+          - not_null
+                    
+  - name: urban
+    description: This model lists all providers that are in an urban area.
+  - name: rural
+    description: This model lists all providers that are in a rural area.
+  - name: urban_rural
+    description:  This model pulls total statistics for urban vs rural providers.
+  - name: big_chain_provider
+    description: List of top 20 chain nursing homes based on turnover.
+  - name: big_chain_stats
+    description: list of top 30 chain nursing homes with statistics.
+  - name: big_chain_beds_to_nurse_turnover
+    description: key ratios we are looking at to explain ratings.
+
+
+sources:
+  - name: cms_provider
+    database: NURSING_HOME
+    schema: NURSING_HOME
+    tables:
+      - name: PROVIDER_INFO_DEC2025
+  
+  - name: urban_rural
+    database: NURSING_HOME
+    schema: NURSING_HOME
+    tables:
+      - name: CMS_PROVIDER
+  
+  - name: big_chain_stats
+    database: NURSING_HOME
+    schema: NURSING_HOME
+    tables:
+      - name: BIG_CHAIN_PROVIDER
+
+  - name: big_chain_ratio_correlations
+    database: NURSING_HOME
+    schema: NURSING_HOME
+    tables:
+      - name: BIG_CHAIN_BEDS_TO_NURSE_TURNOVER
+  
+  
